@@ -1,0 +1,16 @@
+[
+  {
+    "domain": "yourdomain.com",
+    "token": "Provide your token here",
+    "record": [
+      "domain of A record of you"
+    ]
+  },
+  {
+    "domain": "yourdomain.com 2",
+    "token": "Provide your token here 2",
+    "record": [
+      "domain of A record of you 2"
+    ]
+  }
+]

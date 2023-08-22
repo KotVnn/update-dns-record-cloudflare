@@ -1,0 +1,15 @@
+{
+  "name": "update-dns-record-cloudflare",
+  "version": "1.0.0",
+  "description": "App for auto update current external IP to A record Cloudflare",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["cloudflare", "kot", "auto", "dns", "zone", "record"],
+  "author": "Kot",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}
