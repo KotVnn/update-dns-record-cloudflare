@@ -1,6 +1,25 @@
-FROM node:18.16-alpine
+# Stage 1: Development environment
+FROM node:18.16-alpine AS dev
 
-RUN apk add --update --no-cache
-WORKDIR /source
+# Set the working directory inside the container
+WORKDIR /app
 
-ENTRYPOINT './start.sh'
+# Copy all files into the development stage
+COPY . .
+
+# Install all dependencies (including dev dependencies)
+RUN npm install
+
+# Stage 2: Production environment
+FROM node:18.16-alpine AS base
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy only necessary files from the development stage
+COPY --from=dev /app/index.js /app/
+COPY --from=dev /app/config.json /app/
+COPY --from=dev /app/node_modules /app/node_modules
+
+# Command to run the application
+CMD ["node", "index.js"]
