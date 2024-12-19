@@ -9,12 +9,12 @@ const updateIp = async () => {
     }
 }
 
-const updateDns = (token, zoneId, id, domain) => {
+const updateDns = (token, zoneId, id, domain, type, proxied) => {
     const data = JSON.stringify({
         content: ip,
         name: domain,
-        type: 'A',
-        proxied: true
+        type,
+        proxied
     });
 
     const config = {
@@ -46,7 +46,7 @@ const getDnsZone = async (token, id, el) => {
     const rs = await req(config);
     if (rs && rs.result && rs.result.length) {
         for (const item of rs.result) {
-            if (el.record.indexOf(item.name) === 0) await updateDns(token, id, item.id, item.name);
+            if (el.record.indexOf(item.name) === 0) await updateDns(token, id, item.id, item.name, el.type, el.proxied);
         }
     }
 }
