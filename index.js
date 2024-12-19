@@ -45,8 +45,9 @@ const getDnsZone = async (token, id, el) => {
     };
     const rs = await req(config);
     if (rs && rs.result && rs.result.length) {
-        for (const item of rs.result) {
-            if (el.record.indexOf(item.name) === 0) await updateDns(token, id, item.id, item.name, el.type, el.proxied);
+        for (const item of el.record) {
+            const exists = rs.result.find(element => element.name === item.name);
+            if (exists) await updateDns(token, id, exists.id, item.name, item.type, item.proxied);
         }
     }
 }
