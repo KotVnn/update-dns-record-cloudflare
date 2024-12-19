@@ -5,7 +5,7 @@ let ip;
 const updateIp = async () => {
     for (const el of data) {
         const id = await getZone(el);
-        await getDnsZone(el.token, id, el);
+        if (id) await getDnsZone(el.token, id, el);
     }
 }
 
@@ -46,7 +46,7 @@ const getDnsZone = async (token, id, el) => {
     const rs = await req(config);
     if (rs && rs.result && rs.result.length) {
         for (const item of rs.result) {
-            if (el.record.indexOf(item.name) !== -1) await updateDns(token, id, item.id, item.name);
+            if (el.record.indexOf(item.name) === 0) await updateDns(token, id, item.id, item.name);
         }
     }
 }
