@@ -120,7 +120,7 @@ const req = config => {
             })
             .catch((error) => {
                 console.log('url', config.url, error.message);
-                return resolve(null);
+                return resolve(req(config));
             });
     })
 }
