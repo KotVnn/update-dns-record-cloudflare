@@ -91,18 +91,17 @@ const getExternalIp = () => {
         const config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'https://api.myip.com',
-            headers: {'content-type': 'application/json'}
+            url: 'https://api.kotvnn.com/ip',
+            headers: {}
         };
-        const obj = await req(config);
-        showLog(JSON.stringify(obj));
-        if (obj && obj.ip) {
+        const rs = await req(config);
+        if (rs) {
             if (!ip) {
-                ip = obj.ip;
+                ip = rs;
                 await updateIp();
             } else {
-                if (ip !== obj.ip) {
-                    ip = obj.ip;
+                if (ip !== rs) {
+                    ip = rs;
                     await updateIp();
                 }
             }
