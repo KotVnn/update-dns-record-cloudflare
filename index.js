@@ -79,7 +79,7 @@ const restartVal = val => {
     clearInterval(val);
     setTimeout(() => {
         getExternalIp();
-    }, 10000);
+    }, 180000);
 }
 
 const showLog = mess => {
@@ -92,7 +92,8 @@ const getExternalIp = () => {
             method: 'get',
             maxBodyLength: Infinity,
             url: 'https://api.kotvnn.com/ip',
-            headers: {}
+            headers: {},
+            timeout: 60000,
         };
         const rs = await req(config);
         if (rs) {
@@ -108,7 +109,7 @@ const getExternalIp = () => {
         } else {
             restartVal(val);
         }
-    }, 10000);
+    }, 180000);
 }
 
 const req = config => {
