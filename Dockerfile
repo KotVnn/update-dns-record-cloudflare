@@ -11,7 +11,7 @@ COPY . .
 RUN npm install
 
 # Stage 2: Production environment
-FROM node:18.16-alpine AS base
+FROM dev AS base
 
 # Set the working directory inside the container
 WORKDIR /app
